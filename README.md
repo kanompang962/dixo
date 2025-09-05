@@ -136,6 +136,9 @@
     - สร้าง Project Angular (ver ล่าสุดตอนนี้ 20)
     ```
     ng new <project name>
+
+    # ถ้าต้องการกำหนด version
+    npx -p @angular/cli@16 ng new <project name>
     ```
     
 - <img src="https://github.com/devicons/devicon/blob/master/icons/dotnetcore/dotnetcore-original.svg" title="dotnetcore" alt="dotnetcore" width="28" height="28"/> &nbsp;
