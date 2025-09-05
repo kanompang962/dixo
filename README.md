@@ -65,7 +65,7 @@
     - **Install Husky v9** 
     - ไปที่ root ของ repo (โฟลเดอร์รวม Angular + .NET)
     ```
-    cd dixo_erp
+    cd dixo
     ```
 
     - สร้าง package.json (ถ้าไม่มี)
@@ -94,7 +94,7 @@
     }
     ```
 
-    - ปิดใช้งาน Husky (คำสั่งนี้จะสร้างโฟลเดอร์ .husky/ และเพิ่ม script "prepare": "husky" ให้อัตโนมัติใน package.json)
+    - เปิดใช้งาน Husky (คำสั่งนี้จะสร้างโฟลเดอร์ .husky/ และเพิ่ม script "prepare": "husky" ให้อัตโนมัติใน package.json)
     ```
     npx husky init
     ```

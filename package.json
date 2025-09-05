@@ -1,0 +1,35 @@
+{
+  "name": "dixo",
+  "version": "1.0.0",
+  "description": "[![Build](https://img.shields.io/badge/build-pipeline-blue)]() [![Coverage](https://img.shields.io/badge/coverage---yellow)]() [![License](https://img.shields.io/badge/license-MIT-green)]() [![Tech](https://img.shields.io/badge/frontend-Angular%2020-red)]() [![Tech](https://img.shields.io/badge/backend-.NET%208-007ACC)]()",
+  "main": "commitlint.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky",
+    "commit": "cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanompang962/dixo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kanompang962/dixo/issues"
+  },
+  "homepage": "https://github.com/kanompang962/dixo#readme",
+  "devDependencies": {
+    "@commitlint/config-conventional": "^19.8.1",
+    "commitizen": "^4.3.1",
+    "commitlint": "^19.8.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.1.7"
+  }
+}
