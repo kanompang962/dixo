@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "SvflrR6MwB4o1I/NmLMdqqHP/Tpm/u8J7q8wod65qNTVLUZVrcVIjehR5pF7TqjR5c0szz6v3+5XCl9y1RUmlw==",
+  "success": true,
+  "projectFilePath": "/Users/dave/developer/dixo/api/api.csproj",
+  "expectedPackageFiles": [
+    "/Users/dave/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/dave/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/dave/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "/Users/dave/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "/Users/dave/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "/Users/dave/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

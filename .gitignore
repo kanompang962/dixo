@@ -1,0 +1,46 @@
+# ------------------------
+# Node.js / npm
+# ------------------------
+node_modules/
+npm-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Husky log (ถ้ามี)
+.husky/_/
+
+# ------------------------
+# Angular / frontend
+# ------------------------
+frontend/dist/
+frontend/out-tsc/
+frontend/.angular/
+frontend/.vscode/
+frontend/.idea/
+frontend/.env
+
+# ------------------------
+# .NET / backend
+# ------------------------
+backend/bin/
+backend/obj/
+backend/*.user
+backend/*.suo
+backend/*.userosscache
+backend/*.vs/
+backend/*.vscode/
+
+# ------------------------
+# Logs
+# ------------------------
+*.log
+logs/
+*.tlog
+*.vspscc
+
+# ------------------------
+# OS
+# ------------------------
+.DS_Store
+Thumbs.db
