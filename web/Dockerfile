@@ -1,7 +1,7 @@
 # ================================
 # Stage 1: Build Angular app
 # ================================
-FROM node:22-slim AS builder
+FROM node:22-bullseye AS builder
 WORKDIR /app
 
 # ติดตั้ง build tools สำหรับ native modules
