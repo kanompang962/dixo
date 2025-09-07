@@ -4,6 +4,9 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
 
+# ติดตั้ง build tools สำหรับ native dependencies
+RUN apk add --no-cache python3 make g++
+
 # ติดตั้ง devDependencies (รวม Angular CLI) สำหรับ build
 COPY package*.json ./
 RUN npm ci
