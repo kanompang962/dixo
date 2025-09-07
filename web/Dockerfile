@@ -1,7 +1,7 @@
 # ================================
 # Stage 1: Build Angular app
 # ================================
-FROM node:22-bullseye AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 
 # ติดตั้ง build tools สำหรับ native modules
@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y python3 make g++ bash git \
 # ติดตั้ง devDependencies (รวม Angular CLI) สำหรับ build
 COPY package*.json ./
 
-RUN npm ci --legacy-peer-deps 
+RUN npm install --legacy-peer-deps
 
 # copy source code ทั้งหมด
 COPY . .
