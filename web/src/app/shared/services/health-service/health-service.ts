@@ -9,11 +9,13 @@ import { HealthModel } from '../../../core/models/health.model';
 })
 
 export class HealthService {
-  
+
+  private apiUrl = environment.apiUrl; // ← ใช้จาก environment
+
   constructor(private http: HttpClient) {}
 
   getHealth(): Observable<HealthModel> {
-    return this.http.get<HealthModel>(environment.apiUrl + '/health')
+    return this.http.get<HealthModel>(`${this.apiUrl}/health`)
     .pipe(
       map(data => new HealthModel(data))
     );
