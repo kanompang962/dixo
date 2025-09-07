@@ -9,7 +9,8 @@ RUN apk add --no-cache python3 make g++
 
 # ติดตั้ง devDependencies (รวม Angular CLI) สำหรับ build
 COPY package*.json ./
-RUN npm ci
+
+RUN npm ci --legacy-peer-deps --unsafe-perm && npm cache clean --force
 
 # copy source code ทั้งหมด
 COPY . .
