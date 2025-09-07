@@ -1,7 +1,7 @@
 # ================================
 # Stage 1: Build Angular app
 # ================================
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 
 # ติดตั้ง build tools สำหรับ native dependencies
