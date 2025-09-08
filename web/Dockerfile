@@ -4,10 +4,6 @@
 FROM node:22-alpine AS builder
 WORKDIR /app
 
-# ติดตั้ง build tools สำหรับ native modules
-RUN apt-get update && apt-get install -y python3 make g++ bash git \
-    && rm -rf /var/lib/apt/lists/*
-
 # ติดตั้ง devDependencies (รวม Angular CLI) สำหรับ build
 COPY package*.json ./
 
