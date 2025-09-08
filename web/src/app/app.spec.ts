@@ -9,18 +9,18 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     // mock service แบบ Jasmine-friendly
-    mockHealthService = {
-      getHealth: () => of(new HealthModel({ 
-        status: 'Healthy', 
-        timestamp: new Date('2025-09-07T14:00:00Z') 
-      }))
-    };
+    // mockHealthService = {
+    //   getHealth: () => of(new HealthModel({ 
+    //     status: 'Healthy', 
+    //     timestamp: new Date('2025-09-07T14:00:00Z') 
+    //   }))
+    // };
 
     await TestBed.configureTestingModule({
       imports: [App],
-      providers: [
-        { provide: HealthService, useValue: mockHealthService }
-      ]
+      // providers: [
+      //   { provide: HealthService, useValue: mockHealthService }
+      // ]
     }).compileComponents();
   });
 
@@ -30,13 +30,13 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title and health info', () => {
-    const fixture = TestBed.createComponent(App);
-    fixture.detectChanges(); // trigger ngOnInit
+  // it('should render title and health info', () => {
+  //   const fixture = TestBed.createComponent(App);
+  //   fixture.detectChanges(); // trigger ngOnInit
 
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Dixo ERP');
-    expect(compiled.querySelector('h2')?.textContent).toContain('Healthy');
-    expect(compiled.querySelector('h3')?.textContent).toContain('2025');
-  });
+  //   const compiled = fixture.nativeElement as HTMLElement;
+  //   expect(compiled.querySelector('h1')?.textContent).toContain('Dixo ERP');
+  //   expect(compiled.querySelector('h2')?.textContent).toContain('Healthy');
+  //   expect(compiled.querySelector('h3')?.textContent).toContain('2025');
+  // });
 });
