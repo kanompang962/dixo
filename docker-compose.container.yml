@@ -2,14 +2,16 @@
 services:
   # .NET 8 API Backend
   api:
-    image: kanompang962/dixo-api:latest
+    build:
+      context: ./api  # path to your .NET API project folder
+      dockerfile: Dockerfile
     container_name: dixo-api
     ports:
       - "5001:5000"  # map host:5208 to container:8080
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5000
-      - CORS_ORIGINS=https://dixo.tainchaidev.online,http://dixo.tainchaidev.online,http://localhost:8081,http://localhost:4200
+      - CORS_ORIGINS=http://localhost:4200,http://localhost:80
     networks:
       - dixo-network
     healthcheck:
@@ -20,10 +22,14 @@ services:
       start_period: 40s
   # Angular 20 Frontend  
   web:
-    image: kanompang962/dixo-web:latest  # path to your Angular project folder
+    build:
+      context: ./web  # path to your Angular project folder
+      dockerfile: Dockerfile
+      args:
+        - API_URL=http://api:5000   # ← ใช้ service name ของ Docker network
     container_name: dixo-web
     ports:
-      - "8081:80"  # map host:80 to container:80
+      - "80:80"  # map host:80 to container:80
     depends_on:
       api:
         condition: service_healthy
@@ -31,7 +37,6 @@ services:
       - dixo-network
     environment:
       - NODE_ENV=production
-      - API_URL=/api
 
 networks:
   dixo-network:
