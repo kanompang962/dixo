@@ -1,52 +1,52 @@
-<div class="signin-container">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Sign in</mat-card-title>
-    </mat-card-header>
 
-    <mat-card-content>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <!-- Email -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" required />
-            @if (form.controls['email'].hasError('required')) {
-                <mat-error>Email is required</mat-error>
+<main class="flex flex-col min-h-screen">
+  <!-- content -->
+  <section class="flex-1 flex flex-col items-center justify-center pb-[20rem] content">
+    <img [src]="'assets/icons/logo-dixo.png'" class="w-30" alt="Dixo Logo" />
+    <mat-card class="w-full max-w-sm mx-auto p-4">
+      <mat-card-header>
+        <mat-card-title>Sign in or create account</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="fill" class="w-full mb-4">
+            <mat-label>Enter username or email</mat-label>
+            <input matInput type="email" formControlName="email" required />
+            @if(signInForm.controls['email'].hasError('required')){
+              <mat-error>Email is required</mat-error>
             }
-            @if (form.controls['email'].hasError('email')) {
-                <mat-error>Invalid email format</mat-error>
+            @if(signInForm.controls['email'].hasError('email')){
+              <mat-error>Invalid email format</mat-error>
             }
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="w-full mb-4">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" required />
+            @if(signInForm.controls['password'].hasError('required')){
+              <mat-error>Password is required</mat-error>
+            }
+            @if(signInForm.controls['password'].hasError('minlength')){
+              <mat-error>Minimum 6 characters</mat-error>
+            }
+          </mat-form-field>
+          <button mat-raised-button class="w-full mt-4" [disabled]="signInForm.invalid">
+            Sign In
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </section>
+  <!-- footer -->
+  <section class="flex flex-col gap-6 text-center">
+    <mat-divider></mat-divider>
+    <div class="flex justify-center gap-4 text-info cursor-pointer">     
+      <p>Conditions of Use </p>
+      <p>Privacy Notice</p>
+      <p>Help</p>
+    </div>
+    <div class="">© 2025 Deve Tianchai All rights reserved.</div><br>
+  </section>
+</main>
 
-        </mat-form-field>
 
-        <!-- Password -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Password</mat-label>
-          <input
-            matInput
-            type="password"
-            formControlName="password"
-            required
-          />
-          @if (form.controls['password'].hasError('required')){
-            <mat-error>Password is required</mat-error>
-          }
-          @if (form.controls['password'].hasError('minlength')){
-            <mat-error>Minimum 6 characters</mat-error>
-          }
-        </mat-form-field>
 
-        <!-- Submit -->
-        <button
-          mat-raised-button
-          color="primary"
-          type="submit"
-          [disabled]="form.invalid"
-          class="full-width"
-        >
-          Sign in
-        </button>
-      </form>
-    </mat-card-content>
-  </mat-card>
-</div>

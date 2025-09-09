@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatInputModule } from '@angular/material/input';
+import {MatDividerModule} from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -11,25 +14,29 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatDividerModule,
     ],
   templateUrl: './sign-in.html',
   styleUrl: './sign-in.scss'
 })
 
 export class SignIn {
-  form: FormGroup;
+  signInForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
+    this.signInForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
+
   onSubmit() {
-    if (this.form.valid) {
-      console.log('Form Values:', this.form.value);
+    if (this.signInForm.valid) {
+      console.log('Form Values:', this.signInForm.value);
       // 🔹 ต่อไปค่อย call API login
     }
   }
