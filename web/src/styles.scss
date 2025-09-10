@@ -28,20 +28,67 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
 html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-// custom material styles
+/* ทุก <a> เป็นสีน้ำเงิน */
+a {
+  color: var(--color-info); /* Tailwind blue-500 */
+  text-decoration: none; /* เอา underline ถ้าไม่อยากให้มี */
+}
+
+/* hover effect */
+a:hover {
+  text-decoration: underline; /* หรือเปลี่ยนสี hover ถ้าต้องการ */
+  color: var(--color-primary); /* darken blue-600 */
+}
+
+
+/* -----------------------------
+    Card & Material UI
+----------------------------- */
 .mat-mdc-card-title {
   font-size: 20px !important;
 }
 .mat-mdc-card-header {
   margin-bottom: 16px !important;
 }
-
-
 .mat-mdc-card  {
-    border: 1px solid #E0E0E0 !important;
-    border-radius: 8px !important;
-    box-shadow: none !important;
+  padding: 14px !important;
+  border: 1px solid var(--color-ligth) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
 }
+/* -----------------------------
+    Field & Material UI
+----------------------------- */
+.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__notch {
+  border-right: none !important;
+}
+.mat-mdc-form-field-flex {
+  margin-top: 1px !important;
+}
+.mat-mdc-form-field-infix {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  min-height: auto !important;
+}
+.mdc-text-field--outlined .mdc-notched-outline {
+  height: 36px !important;
+}
+// .mdc-text-field--outlined .mdc-notched-outline__leading,
+// .mdc-text-field--outlined .mdc-notched-outline__notch,
+// .mdc-text-field--outlined .mdc-notched-outline__trailing {
+//   border-color: #d1d5db !important; /* เทาแบบ Tailwind gray-300 */
+// }
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-color: var(--color-ligth) !important; /* ตอน focus ก็ยังคงเทาอ่อน */
+}
+
+
+
+

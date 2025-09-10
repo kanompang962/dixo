@@ -10,6 +10,11 @@ export const routes: Routes = [
     path: 'auth',
     children: [
       {
+        path: '',
+        redirectTo: 'signin',
+        pathMatch: 'full',
+      },
+      {
         path: 'signin',
         loadComponent: () =>
           import('./features/auth/sign-in/sign-in').then(
@@ -27,9 +32,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    loadComponent: () =>
-      import('./app').then(
-        (m) => m.App
-      ),
+    redirectTo: 'auth/signin',
+    pathMatch: 'full',
   },
 ];

@@ -1,36 +1,40 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #ffce12;
-  --color-ligth: #ffffff;
-  --color-back: #000000;
 
-  --color-surface: #ffffff;
-  --color-on-surface: #000000;
-
-  --color-success: #7BC74D;
-  --color-warning: #FFD717;
-  --color-danger: #E84545;
-  --color-info: #0D63A5; 
 }
 
 :root {
+   --color-primary: #131921;
+
+   --color-surface: #ffffff;
+   --color-on-surface: #000000;
+
+   --color-success: #7BC74D;
+   --color-warning: #ffce12;
+   --color-danger: #E84545;
+   --color-info: #0D63A5; 
+   --color-ligth: #E0E0E0; 
   /* -----------------------------
      Primary & Secondary Colors
   ----------------------------- */
   --mat-sys-primary: var(--color-primary);        /* สีหลักของแอป */
   --mat-sys-on-primary: var(--color-on-primary);    /* สีข้อความ/ไอคอนบน primary */
 
-  --mat-sys-surface: var(--color-ligth);        /* สีพื้นหลังของ card, sheet, menu */
-  --mat-sys-on-surface: var(--color-ligth);     /* สีข้อความ/ */
+  --mat-sys-surface: var(--color-surface);        /* สีพื้นหลังของ card, sheet, menu */
+  --mat-sys-on-surface: var(--color-on-surface);     /* สีข้อความ/ */
 
-  --mat-sys-background: var(--color-ligth);    /* สีพื้นหลังหลักของ app */
-  --mat-sys-on-background: var(--color-black);  /* สีข้อความบน background */
+  --mat-sys-background: var(--color-surface);    /* สีพื้นหลังหลักของ app */
+  --mat-sys-on-background: var(--color-on-surface);  /* สีข้อความบน background */
 
   /* -----------------------------
      Mat-Card Colors
   ----------------------------- */
-  --mat-sys-surface-container-low: var(--color-ligth);
+  --mat-sys-surface-container-low: var(--color-surface); /* สีพื้นหลังของ card */
+  /* -----------------------------
+     Mat-Text-Field Colors
+  ----------------------------- */
+  /* --mat-sys-surface-variant: var(--color-ligth); */
 
   /* -----------------------------
      Error / Warning

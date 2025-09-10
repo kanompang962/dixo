@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatProgressSpinnerModule,
     MatDividerModule,
+    MatIconModule,
     ],
   templateUrl: './sign-in.html',
   styleUrl: './sign-in.scss'
