@@ -2,14 +2,67 @@
 @use '@angular/material' as mat;
 
 html {
+  color-scheme: light;
   @include mat.theme((
     color: (
       primary: mat.$azure-palette,
       tertiary: mat.$blue-palette,
     ),
-    typography: Roboto,
+    typography: 'Noto Sans, Noto Sans Thai, sans-serif',
     density: 0,
   ));
+}
+
+:root {
+   --color-primary: #131921;
+   --color-surface: #ffffff;
+   --color-on-surface: #000000;
+   --color-success: #7BC74D;
+   --color-warning: #ffce12;
+   --color-danger: #E84545;
+   --color-info: #0D63A5; 
+   --color-light: #E0E0E0; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// ถ้ามี body.dark-mode → ใช้ dark
+body.dark-mode {
+  color-scheme: dark;
+  background-color: var(--mat-sys-background);
+  color: var(--mat-sys-on-background);
+  --mat-sys-background: var(--color-primary); /* พื้นหลัง dark */
+  --mat-sys-on-background: var(--color-light); /* ข้อความบน dark */
+  --mat-sys-surface: var(--color-primary); /* card, sheet */
+  --mat-sys-on-surface: var(--color-light);
+    /* -----------------------------
+     Primary & Secondary Colors
+  ----------------------------- */
+  /* -----------------------------
+     Mat-Card Colors
+  ----------------------------- */
+  --mat-sys-surface-container-low: var(--color-primary); /* สีพื้นหลังของ card */
+  .mat-mdc-card  {
+    border: 1px solid #404040 !important;
+  }
+  /* -----------------------------
+     Mat-Text-Field Colors
+  ----------------------------- */
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
+    border-color: #404040 !important; /* ตอน focus ก็ยังคงเทาอ่อน */
+  }
+  /* --mat-sys-surface-variant: var(--color-light); */
+  /* -----------------------------
+     Error / Warning
+  ----------------------------- */
+  --mat-sys-error: #b00020;          /* สีแจ้งเตือน / error */
+  --mat-sys-on-error: #ffffff;       /* สีข้อความ/ไอคอนบน error */
 }
 
 body {
@@ -17,16 +70,67 @@ body {
   background-color: var(--mat-sys-background);
   color: var(--mat-sys-on-background);
   font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Noto Sans", "Noto Sans Thai", sans-serif;
   margin: 0;
-}
-/* You can add global styles to this file, and also import other style files */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    /* -----------------------------
+     Primary & Secondary Colors
+  ----------------------------- */
+  --mat-sys-primary: var(--color-primary);        /* สีหลักของแอป */
+  --mat-sys-on-primary: var(--color-on-primary);    /* สีข้อความ/ไอคอนบน primary */
+  --mat-sys-surface: var(--color-surface);        /* สีพื้นหลังของ card, sheet, menu */
+  --mat-sys-on-surface: var(--color-on-surface);     /* สีข้อความ/ */
+  --mat-sys-background: var(--color-surface);    /* สีพื้นหลังหลักของ app */
+  --mat-sys-on-background: var(--color-on-surface);  /* สีข้อความบน background */
+  /* -----------------------------
+     Mat-Card Colors
+  ----------------------------- */
+  --mat-sys-surface-container-low: var(--color-surface); /* สีพื้นหลังของ card */
+  /* -----------------------------
+     Mat-Text-Field Colors
+  ----------------------------- */
+  /* --mat-sys-surface-variant: var(--color-light); */
+  /* -----------------------------
+     Error / Warning
+  ----------------------------- */
+  --mat-sys-error: #b00020;          /* สีแจ้งเตือน / error */
+  --mat-sys-on-error: #ffffff;       /* สีข้อความ/ไอคอนบน error */
+  /* -----------------------------
+      Card & Material UI
+  ----------------------------- */
+  .mat-mdc-card-title {
+    font-size: 20px !important;
+  }
+  .mat-mdc-card-header {
+    margin-bottom: 16px !important;
+  }
+  .mat-mdc-card  {
+    padding: 14px !important;
+    border: 1px solid var(--color-light) !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+  }
+  /* -----------------------------
+      Field & Material UI
+  ----------------------------- */
+  .mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__notch {
+    border-right: none !important;
+  }
+  .mat-mdc-form-field-flex {
+    margin-top: 1px !important;
+  }
+  .mat-mdc-form-field-infix {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    min-height: auto !important;
+  }
+  .mdc-text-field--outlined .mdc-notched-outline {
+    height: 36px !important;
+  }
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
+    border-color: var(--color-light) !important; /* ตอน focus ก็ยังคงเทาอ่อน */
+  }
 }
 
 html, body { height: 100%; }
@@ -37,7 +141,6 @@ a {
   color: var(--color-info); /* Tailwind blue-500 */
   text-decoration: none; /* เอา underline ถ้าไม่อยากให้มี */
 }
-
 /* hover effect */
 a:hover {
   text-decoration: underline; /* หรือเปลี่ยนสี hover ถ้าต้องการ */
@@ -45,49 +148,6 @@ a:hover {
 }
 
 
-/* -----------------------------
-    Card & Material UI
------------------------------ */
-.mat-mdc-card-title {
-  font-size: 20px !important;
-}
-.mat-mdc-card-header {
-  margin-bottom: 16px !important;
-}
-.mat-mdc-card  {
-  padding: 14px !important;
-  border: 1px solid var(--color-ligth) !important;
-  border-radius: 8px !important;
-  box-shadow: none !important;
-}
-/* -----------------------------
-    Field & Material UI
------------------------------ */
-.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__notch {
-  border-right: none !important;
-}
-.mat-mdc-form-field-flex {
-  margin-top: 1px !important;
-}
-.mat-mdc-form-field-infix {
-  padding-top: 4px !important;
-  padding-bottom: 4px !important;
-  min-height: auto !important;
-}
-.mdc-text-field--outlined .mdc-notched-outline {
-  height: 36px !important;
-}
-// .mdc-text-field--outlined .mdc-notched-outline__leading,
-// .mdc-text-field--outlined .mdc-notched-outline__notch,
-// .mdc-text-field--outlined .mdc-notched-outline__trailing {
-//   border-color: #d1d5db !important; /* เทาแบบ Tailwind gray-300 */
-// }
-
-.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
-.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
-.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
-  border-color: var(--color-ligth) !important; /* ตอน focus ก็ยังคงเทาอ่อน */
-}
 
 
 

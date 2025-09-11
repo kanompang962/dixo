@@ -7,6 +7,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatProgressSpinnerModule,
     MatDividerModule,
     MatIconModule,
+    CommonModule
     ],
   templateUrl: './sign-in.html',
   styleUrl: './sign-in.scss'
@@ -26,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 export class SignIn {
   signInForm: FormGroup;
+  darkMode = false;
 
   constructor(private fb: FormBuilder) {
     this.signInForm = this.fb.group({
@@ -34,6 +37,10 @@ export class SignIn {
     });
   }
 
+  toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    this.darkMode = !this.darkMode;
+  }
 
   onSubmit() {
     if (this.signInForm.valid) {

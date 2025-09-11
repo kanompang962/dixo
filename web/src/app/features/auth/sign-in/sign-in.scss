@@ -2,8 +2,17 @@
 .content {
     padding-bottom: 12rem;
 }
-.mat-mdc-unelevated-button:not(:disabled){
-    background-color: var(--color-warning) !important;
+/* ปุ่ม Light mode */
+.mat-mdc-unelevated-button:not(:disabled) {
+  background-color: var(--color-warning) !important;
+}
+/* ปุ่ม Dark mode */
+.dark{
+  color: var(--color-on-surface) !important; /* สีข้อความใน dark mode */
+}
+
+.mat-mdc-unelevated-button:hover{
+    background-color: #f8c90a !important;
 }
 
 

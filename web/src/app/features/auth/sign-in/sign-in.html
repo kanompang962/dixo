@@ -31,7 +31,7 @@
               <mat-error>Minimum 6 characters</mat-error>
             }
           </mat-form-field>
-          <button matButton="filled" color="warning" class="w-full mt-4">
+          <button matButton="filled" color="warning" [ngClass]="{'dark': darkMode}" class="w-full mt-4" (click)="toggleDarkMode()">
             Sign In
           </button>
         </form>
