@@ -3,9 +3,24 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth/signin',
-    pathMatch: 'full',
+    loadComponent: () =>
+      import('./core/layouts/admin-layout/admin-layout').then((m) => m.AdminLayout),
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./features/home/home').then((m) => m.Home),
+      },
+      {
+        path: 'user-management',
+        loadComponent: () => import('./features/user-management/user-management').then((m) => m.UserManagement),
+      },
+    ]
   },
+  // {
+  //   path: '',
+  //   redirectTo: 'auth/signin',
+  //   pathMatch: 'full',
+  // },
   {
     path: 'auth',
     children: [

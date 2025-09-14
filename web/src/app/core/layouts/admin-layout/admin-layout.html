@@ -1,0 +1,48 @@
+
+
+<mat-drawer-container class="h-screen w-screen" autosize>
+  <!-- Sidenav -->
+  <mat-drawer #drawer mode="side" opened>
+    <div class="flex items-center justify-center">
+      <img src="assets/icons/logo-dixo.png" class="w-24" alt="logo">
+    </div>
+    <aside class="!px-8 flex flex-col gap-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between gap-4">
+          <section class=" hover:shadow-md flex items-center justify-center rounded-xl !p-2 cursor-pointer">
+            <mat-icon fontIcon="home"></mat-icon>
+          </section>
+          <p>Dashboard</p>
+        </div>
+        <mat-icon fontIcon="keyboard_arrow_right"></mat-icon>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between gap-4">
+          <section class=" hover:shadow-md flex items-center justify-center rounded-xl !p-2 cursor-pointer">
+            <mat-icon fontIcon="group"></mat-icon>
+          </section>
+          <p>User Management</p>
+        </div>
+        <mat-icon fontIcon="keyboard_arrow_right"></mat-icon>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between gap-4">
+          <section class=" hover:shadow-md flex items-center justify-center rounded-xl !p-2 cursor-pointer">
+            <mat-icon fontIcon="local_mall"></mat-icon>
+          </section>
+          <p>Items</p>
+        </div>
+        <mat-icon fontIcon="keyboard_arrow_right"></mat-icon>
+      </div>
+    </aside>
+  </mat-drawer>
+  <!-- Content -->
+  <div class="">
+    <app-navbar />
+    <div class="!p-4" id="main-content">
+      <div class="!p-4  rounded-lg shadow-lg" id="content-wrapper">
+        <router-outlet />
+      </div>
+    </div>
+  </div>
+</mat-drawer-container>

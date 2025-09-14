@@ -38,7 +38,7 @@ export class SignIn {
   }
 
   toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
+    document.body.classList.toggle('dark');
     this.darkMode = !this.darkMode;
   }
 

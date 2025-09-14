@@ -22,6 +22,10 @@ html {
    --color-danger: #E84545;
    --color-info: #0D63A5; 
    --color-light: #E0E0E0; 
+   --color-secondary: #f3f4f6; 
+   --color-border: #404040;
+
+   --color-primary-dark: #1e232b; 
 }
 
 * {
@@ -30,8 +34,8 @@ html {
     box-sizing: border-box;
 }
 
-// ถ้ามี body.dark-mode → ใช้ dark
-body.dark-mode {
+// ถ้ามี body.dark → ใช้ dark
+body.dark {
   color-scheme: dark;
   background-color: var(--mat-sys-background);
   color: var(--mat-sys-on-background);
@@ -57,7 +61,38 @@ body.dark-mode {
   .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
     border-color: #404040 !important; /* ตอน focus ก็ยังคงเทาอ่อน */
   }
-  /* --mat-sys-surface-variant: var(--color-light); */
+  /* -----------------------------
+    Icon & Material UI
+  ----------------------------- */
+  .mat-icon{
+    color: var(--color-light) !important;
+    justify-content: center !important;
+  }
+  /* -----------------------------
+    Drawer & Material UI
+  ----------------------------- */
+  .mat-drawer.mat-drawer-opened.mat-drawer-opened {
+    background-color: var(--color-primary-dark) !important;
+  }
+  /* -----------------------------
+    Navbar & Material UI
+  ----------------------------- */
+  nav {
+    background-color: var(--color-primary-dark) !important;
+  }
+  /* -----------------------------
+    Admin Layout Content
+  ----------------------------- */
+  #main-content {
+    background-color: var(--color-primary-dark) !important;
+    #content-wrapper {
+      background-color: var(--color-primary) !important;
+      border: 1px solid var(--color-border) !important;
+    }
+  }
+  section {
+    background-color: var(--color-primary) !important;
+  }
   /* -----------------------------
      Error / Warning
   ----------------------------- */
@@ -130,6 +165,50 @@ body {
   .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
   .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
     border-color: var(--color-light) !important; /* ตอน focus ก็ยังคงเทาอ่อน */
+  }
+  /* -----------------------------
+    Button & Material UI
+  ----------------------------- */
+  .mat-mdc-button:not(:disabled) {
+    background-color: var(--color-warning) !important;
+  }
+  /* -----------------------------
+    Icon & Material UI
+  ----------------------------- */
+  .mat-icon{
+    color: var(--color-primary) !important;
+    font-family: 'Material Icons Outlined' !important;
+    font-size: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  /* -----------------------------
+    Drawer & Material UI
+  ----------------------------- */
+  .mat-drawer.mat-drawer-opened.mat-drawer-opened {
+    width: 20rem !important;
+    border-radius: 0 !important;
+    background-color: var(--color-secondary) !important;
+  }
+  /* -----------------------------
+    Navbar & Material UI
+  ----------------------------- */
+  nav {
+    background-color: var(--color-secondary) !important;
+  }
+  /* -----------------------------
+    Admin Layout Content
+  ----------------------------- */
+  #main-content {
+    background-color: var(--color-secondary) !important;
+    min-height: calc(100vh - 72px) !important;
+    // #content-wrapper {
+    // background-color: var(--color-secondary) !important;
+    //  }
+  }
+  section {
+    background-color: var(--color-surface) !important;
   }
 }
 
