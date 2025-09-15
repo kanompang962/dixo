@@ -7,13 +7,31 @@ on:
     branches:
       - main
 jobs:
-  build-and-test:
+  # ตรวจสอบว่าไฟล์ไหนถูกแก้ไข
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      frontend: ${{ steps.filter.outputs.frontend }}
+      backend: ${{ steps.filter.outputs.backend }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            frontend:
+              - 'web/**'
+            backend:
+              - 'api/**'
+  # Frontend Job
+  frontend:
+    name: Frontend (Angular)
+    needs: changes
+    if: needs.changes.outputs.frontend == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      # Frontend: Angular
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -28,7 +46,15 @@ jobs:
         working-directory: ./web
         run: npm run test -- --watch=false --browsers=ChromeHeadless
 
-      # Backend: .NET
+ # Backend Job
+  backend:
+    name: Backend (.NET)
+    needs: changes
+    if: needs.changes.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -44,7 +70,7 @@ jobs:
         run: dotnet test --no-build --verbosity normal
 
   build-and-push-docker:
-    needs: build-and-test
+    needs: [changes, frontend, backend]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
@@ -56,11 +82,13 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push Angular Docker image
+        if: needs.changes.outputs.frontend == 'true' && needs.frontend.result == 'success'
         working-directory: ./web
         run: |
           docker build -t kanompang962/dixo-web:latest .
           docker push kanompang962/dixo-web:latest
       - name: Build and push .NET Docker image
+        if: needs.changes.outputs.backend == 'true' && needs.backend.result == 'success'
         working-directory: ./api
         run: |
           docker build -t kanompang962/dixo-api:latest .
