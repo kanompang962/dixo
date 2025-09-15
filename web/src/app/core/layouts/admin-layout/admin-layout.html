@@ -21,10 +21,10 @@
     </aside>
   </mat-drawer>
   <!-- Content -->
-  <div class="panel !px-4 flex flex-col gap-4">
+  <div class="panel !px-4 flex flex-col gap-4 h-screen">
     <app-navbar />
     <app-header [title]="'Title'" />
-    <div class="" id="main-content">
+    <div class="!overflow-y-auto" id="main-content" >
       <section class="!p-6 rounded-lg shadow-lg">
         <router-outlet />
       </section>
