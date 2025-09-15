@@ -1,0 +1,14 @@
+<section class="!my-2  hover:shadow-md flex items-center justify-center rounded-xl !p-2 cursor-pointer" matBadge="7"
+        [class]="class"
+        [ngClass]="type === 'add' 
+                    ? '!bg-warning'
+                    : type === 'edit'
+                        ? '!bg-warning/80'
+                        : type === 'delete'
+                            ? '!bg-warning/60'
+                            : ''" >
+    @if (icon) {
+        <mat-icon [fontIcon]="icon"></mat-icon>
+    }
+    <p>{{ title }}</p>
+</section>

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { MatCard, MatCardContent } from "@angular/material/card";
+import { MatDivider } from "@angular/material/divider";
+import { IconButton } from "../../shared/components/icon-button/icon-button";
 
 export interface PeriodicElement {
   name: string;
@@ -27,7 +29,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
   imports: [
     MatTableModule,
     MatCard,
-    MatCardContent
+    MatCardContent,
+    MatDivider,
+    IconButton
 ],
   templateUrl: './user-management.html',
   styleUrl: './user-management.scss'

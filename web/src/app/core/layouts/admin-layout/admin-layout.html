@@ -7,40 +7,25 @@
       <img src="assets/icons/logo-dixo.png" class="w-24" alt="logo">
     </div>
     <aside class="!px-8 flex flex-col gap-4">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center justify-between gap-4">
-          <section class=" hover:shadow-md flex items-center justify-center rounded-xl !p-2 cursor-pointer">
-            <mat-icon fontIcon="home"></mat-icon>
-          </section>
-          <p>Dashboard</p>
+      @for (item of data_drawer; track item.id) {
+        <div [routerLink]="item.link" class="flex items-center justify-between cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out">
+          <div class="flex items-center justify-between gap-4">
+            <section class=" hover:shadow-md flex items-center justify-center rounded-xl !p-2 cursor-pointer">
+              <mat-icon [fontIcon]="item.icon"></mat-icon>
+            </section>
+            <p>{{ item.title }}</p>
+          </div>
+          <mat-icon fontIcon="keyboard_arrow_right"></mat-icon>
         </div>
-        <mat-icon fontIcon="keyboard_arrow_right"></mat-icon>
-      </div>
-      <div class="flex items-center justify-between">
-        <div class="flex items-center justify-between gap-4">
-          <section class=" hover:shadow-md flex items-center justify-center rounded-xl !p-2 cursor-pointer">
-            <mat-icon fontIcon="group"></mat-icon>
-          </section>
-          <p>User Management</p>
-        </div>
-        <mat-icon fontIcon="keyboard_arrow_right"></mat-icon>
-      </div>
-      <div class="flex items-center justify-between">
-        <div class="flex items-center justify-between gap-4">
-          <section class=" hover:shadow-md flex items-center justify-center rounded-xl !p-2 cursor-pointer">
-            <mat-icon fontIcon="local_mall"></mat-icon>
-          </section>
-          <p>Items</p>
-        </div>
-        <mat-icon fontIcon="keyboard_arrow_right"></mat-icon>
-      </div>
+      }
     </aside>
   </mat-drawer>
   <!-- Content -->
-  <div class="">
+  <div class="panel !px-4 flex flex-col gap-4">
     <app-navbar />
-    <div class="!p-4" id="main-content">
-      <section class="!p-4  rounded-lg shadow-lg">
+    <app-header [title]="'Title'" />
+    <div class="" id="main-content">
+      <section class="!p-6 rounded-lg shadow-lg">
         <router-outlet />
       </section>
     </div>
