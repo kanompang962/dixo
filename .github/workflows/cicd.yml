@@ -97,7 +97,7 @@ jobs:
           docker push kanompang962/dixo-api:latest
 
   deploy:
-    needs: build-and-push-docker
+    needs: [changes, build-and-push-docker]   # ✅ ต้องมี changes ด้วย
     runs-on: ubuntu-latest
     if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main' && (needs.changes.outputs.frontend == 'true' || needs.changes.outputs.backend == 'true')
     steps:
@@ -119,14 +119,15 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             cd /home/${{ secrets.VPS_USERNAME }}/dixo
-            docker-compose pull
 
             if [ "${{ needs.changes.outputs.frontend }}" = "true" ]; then
               echo "Deploying frontend..."
+              docker-compose pull web
               docker-compose up -d web
             fi
 
             if [ "${{ needs.changes.outputs.backend }}" = "true" ]; then
               echo "Deploying backend..."
+              docker-compose pull api
               docker-compose up -d api
             fi
