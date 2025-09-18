@@ -29,9 +29,9 @@ describe('HealthService', () => {
     };
 
     service.getHealth().subscribe((res) => {
-      expect(res instanceof HealthModel).toBeTrue();   // ✅ ต้องเป็น instance ของ class
+      expect(res instanceof HealthModel).toBe(true);
       expect(res.status).toBe('Healthy');             // ✅ property ตรงกับ mock
-      expect(res.timestamp instanceof Date).toBeTrue(); // ✅ timestamp แปลงเป็น Date แล้ว
+      expect(res.timestamp instanceof Date).toBe(true);  // ✅ ต้องเป็น instance ของ class
       expect(typeof res.formattedTime()).toBe('string'); // ✅ method ใช้งานได้
     });
 

@@ -18,7 +18,7 @@
 - [Environment & Configuration](#-environment--configuration)
 - [CI / CD](#-ci--cd)
 - [Monitoring & Logging](#-monitoring--logging)
-- [Testing](#-testing)
+- [Jest & Testing](#-jest--testing)
 - [Pre-commit / Lint (Husky)](#-pre-commit--lint-husky)
 - [Deployment (Docker + Nginx + Ubuntu)](#-deployment-docker--nginx--ubuntu)
 - [Contributing](#-contributing)
@@ -148,5 +148,236 @@
     ```
 
 ---
-## 🏗️ Architecture
+## 🏗️ Jest & Testing
+
+This project uses **Jest** instead of Karma for testing, providing faster test execution and better developer experience.
+
+### 🚀 Quick Start
+
+```bash
+# Run tests
+npm test
+
+# Run tests in watch mode
+npm test -- --watch
+
+# Run tests with coverage
+npm test -- --coverage
+```
+
+### 📦 Dependencies
+
+The following packages are required for Jest testing:
+
+```json
+{
+  "devDependencies": {
+    "jest": "30.0.0",
+    "@types/jest": "30.0.0",
+    "jest-preset-angular": "15.0.1",
+    "@angular-builders/jest": "20.0.0"
+  }
+}
+```
+
+### ⚙️ Configuration Files
+
+### jest.config.js
+```javascript
+module.exports = {
+  preset: 'jest-preset-angular',
+  setupFilesAfterEnv: ['<rootDir>/src/setup-jest.ts'],
+  testEnvironment: 'jsdom',
+  moduleFileExtensions: ['ts', 'html', 'js', 'json'],
+  collectCoverage: true,
+  coverageReporters: ['html', 'text-summary', 'lcov'],
+  testMatch: ['**/*.spec.ts'],
+  transformIgnorePatterns: ['node_modules/(?!@angular|@ngrx|rxjs)']
+};
+```
+
+### src/setup-jest.ts
+```typescript
+import 'jest-preset-angular/setup-env/zone';
+```
+
+### tsconfig.spec.json
+```json
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/spec",
+    "module": "CommonJS",
+    "types": ["jest", "node"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
+  ]
+}
+```
+
+### 🧪 Writing Tests
+
+### Basic Test Structure
+```typescript
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MyComponent } from './my-component';
+
+describe('MyComponent', () => {
+  let component: MyComponent;
+  let fixture: ComponentFixture<MyComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [MyComponent] // For standalone components
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(MyComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+```
+
+### Jest vs Jasmine Matchers
+
+When migrating from Karma/Jasmine, update these matchers:
+
+```typescript
+// ❌ Jasmine (old)
+expect(value).toBeTrue();
+expect(value).toBeFalse();
+expect(value).toBeNull();
+expect(value).toBeUndefined();
+
+// ✅ Jest (new)
+expect(value).toBe(true);
+expect(value).toBe(false);
+expect(value).toBeNull();
+expect(value).toBeUndefined();
+```
+
+### 📊 Coverage Reports
+
+Coverage reports are automatically generated in the `coverage/` directory when running:
+
+```bash
+npm test -- --coverage
+```
+
+Coverage thresholds:
+- **Statements**: > 80%
+- **Branches**: > 80%
+- **Functions**: > 80%
+- **Lines**: > 80%
+
+### 🔧 Available Scripts
+
+```bash
+# Run all tests once
+npm test
+
+# Run tests in watch mode (re-runs when files change)
+npm test -- --watch
+
+# Run tests with coverage report
+npm test -- --coverage
+
+# Run specific test file
+npm test -- user.spec.ts
+
+# Run tests matching pattern
+npm test -- --testNamePattern="should create"
+
+# Run tests in verbose mode (shows individual test results)
+npm test -- --verbose
+
+# Run tests and update snapshots
+npm test -- --updateSnapshot
+```
+
+### 🐛 Common Issues
+
+### 1. Dependency Conflicts
+If you encounter `ERESOLVE` errors during installation:
+```bash
+npm install --legacy-peer-deps
+```
+
+### 2. Module Resolution Errors
+Ensure `transformIgnorePatterns` includes necessary packages:
+```javascript
+transformIgnorePatterns: ['node_modules/(?!@angular|@ngrx|rxjs|other-package)']
+```
+
+### 3. Async Testing
+For testing async operations:
+```typescript
+it('should handle async operations', async () => {
+  const result = await service.getData();
+  expect(result).toBeDefined();
+});
+```
+
+### 4. Mocking Services
+```typescript
+const mockService = {
+  getData: jest.fn().mockReturnValue(of(mockData))
+};
+
+beforeEach(() => {
+  TestBed.configureTestingModule({
+    providers: [
+      { provide: DataService, useValue: mockService }
+    ]
+  });
+});
+```
+
+### 📈 Performance Benefits
+
+Compared to Karma, Jest provides:
+
+- **5-10x faster** test execution
+- **Built-in coverage** reports
+- **Better watch mode** with intelligent re-running
+- **Parallel test execution**
+- **Lower memory usage**
+- **Snapshot testing** capabilities
+
+### 🔄 Migration from Karma
+
+If migrating from Karma to Jest:
+
+1. **Remove Karma files**: `karma.conf.js`, `src/test.ts`
+2. **Update angular.json**: Change test builder to `@angular-builders/jest:run`
+3. **Update test syntax**: Replace Jasmine-specific matchers
+4. **Install dependencies**: Follow the setup steps above
+
+### 📝 Best Practices
+
+1. **Group related tests** using `describe()` blocks
+2. **Use descriptive test names** that explain what's being tested
+3. **Keep tests isolated** - each test should be independent
+4. **Mock external dependencies** to avoid side effects
+5. **Test both positive and negative cases**
+6. **Use `beforeEach()` for common setup**
+7. **Clean up after tests** if needed using `afterEach()`
+
+---
+
+### 📚 Resources
+
+- [Jest Documentation](https://jestjs.io/docs/getting-started)
+- [Jest Preset Angular](https://github.com/thymikee/jest-preset-angular)
+- [Angular Testing Guide](https://angular.dev/guide/testing)
+- [Angular Builders Jest](https://github.com/angular-builders/jest)
+
 

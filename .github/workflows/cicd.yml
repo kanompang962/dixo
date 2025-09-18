@@ -38,13 +38,13 @@ jobs:
           node-version: '20'
       - name: Install Angular dependencies
         working-directory: ./web
-        run: npm install
+        run: npm install --legacy-peer-deps  # 👈 เพิ่ม --legacy-peer-deps
       - name: Build Angular
         working-directory: ./web
         run: npm run build -- --configuration production
       - name: Test Angular
         working-directory: ./web
-        run: npm run test -- --watch=false --browsers=ChromeHeadless
+        run: npm test  # 👈 เปลี่ยนจาก --watch=false --browsers=ChromeHeadless
 
  # Backend Job
   backend:
