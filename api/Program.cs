@@ -1,3 +1,8 @@
+using api.Data;
+using api.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +22,21 @@ builder.Services.AddCors(options =>
                   .AllowAnyHeader();
         });
 });
+// Add DbContext
+var connString = builder.Configuration.GetConnectionString("DefaultConnection");
+// ใช้ Pomelo MySQL / TiDB Cloud
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(connString, ServerVersion.AutoDetect(connString)));
+// Add Identity
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequiredLength = 12;
+})
+.AddEntityFrameworkStores<AppDbContext>();
 
 var app = builder.Build();
 
