@@ -1,5 +1,6 @@
 using api.Data;
 using api.Models;
+using api.Services.RoleService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,6 +38,9 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     options.Password.RequiredLength = 12;
 })
 .AddEntityFrameworkStores<AppDbContext>();
+// ลงทะเบียน Service Layer
+// RoleService
+builder.Services.AddScoped<IRoleService, RoleService>();
 
 var app = builder.Build();
 

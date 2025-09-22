@@ -14,7 +14,6 @@ namespace api.Models
         public string thumbnail { get; set; }  // รูป profile
         public string Address { get; set; }            // ที่อยู่
         public string Gender { get; set; }         // Male / Female / Other
-        public int RoleId { get; set; }
         public int DepartmentId { get; set; }
         public string PositionId { get; set; }
         public bool IsActive { get; set; } = true; // สถานะใช้งาน
