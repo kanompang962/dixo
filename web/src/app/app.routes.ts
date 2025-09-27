@@ -12,7 +12,17 @@ export const routes: Routes = [
       },
       {
         path: 'user-management',
-        loadComponent: () => import('./features/user-management/user-management').then((m) => m.UserManagement),
+        // pathMatch: 'full',
+        children: [
+          {
+            path: 'users',
+            loadComponent: ()=> import('./features/user-management/users/users').then((m)=> m.Users), 
+          },
+          {
+            path: 'roles-permissions',
+            loadComponent: ()=> import('./features/user-management/roles-permissions/roles-permissions').then((m)=> m.RolesPermissions), 
+          }
+        ]
       },
     ]
   },
@@ -31,17 +41,11 @@ export const routes: Routes = [
       },
       {
         path: 'signin',
-        loadComponent: () =>
-          import('./features/auth/sign-in/sign-in').then(
-            (m) => m.SignIn
-          ),
+        loadComponent: () => import('./features/auth/sign-in/sign-in').then((m) => m.SignIn),
       },
       {
         path: 'signup',
-        loadComponent: () =>
-          import('./features/auth/sign-up/sign-up').then(
-            (m) => m.SignUp
-          ),
+        loadComponent: () => import('./features/auth/sign-up/sign-up').then((m) => m.SignUp),
       },
     ],
   },

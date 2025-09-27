@@ -7,7 +7,7 @@
       <img src="assets/icons/logo-dixo.png" class="w-24" alt="logo">
     </div>
     <aside class="!px-8 flex flex-col gap-4">
-      @for (item of data_drawer; track item.id) {
+      <!-- @for (item of data_drawer; track item.id) {
         <div [routerLink]="item.link" class="flex items-center justify-between cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out">
           <div class="flex items-center justify-between gap-4">
             <section class=" hover:shadow-md flex items-center justify-center rounded-xl !p-2 cursor-pointer">
@@ -17,17 +17,51 @@
           </div>
           <mat-icon fontIcon="keyboard_arrow_right"></mat-icon>
         </div>
-      }
+      } -->
+
+      <mat-tree #tree [dataSource]="dataSource" [childrenAccessor]="childrenAccessor">
+        <mat-tree-node 
+          *matTreeNodeDef="let node" 
+          matTreeNodePadding 
+          [routerLink]="node.link || null">
+          <div class="flex items-center gap-3">
+            <section class=" hover:shadow-md flex items-center justify-center rounded-xl !p-2 cursor-pointer">
+              <mat-icon [fontIcon]="node.icon"></mat-icon>
+            </section>
+            <p class="text-sm">{{node.name}}</p>
+          </div>
+        </mat-tree-node>
+        <!-- This is the tree node template for expandable nodes -->
+        <mat-tree-node 
+          *matTreeNodeDef="let node;when: hasChild" 
+          matTreeNodePadding matTreeNodeToggle
+          [cdkTreeNodeTypeaheadLabel]="node.name"
+          [routerLink]="node.link || null">
+          <div class="flex items-center gap-3">
+            <section class=" hover:shadow-md flex items-center justify-center rounded-xl !p-2 cursor-pointer">
+              <mat-icon [fontIcon]="node.icon"></mat-icon>
+            </section>
+            <p class="text-sm">{{node.name}}</p>
+          </div>
+          <button matIconButton matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{tree.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+        </mat-tree-node>
+      </mat-tree>
+
     </aside>
   </mat-drawer>
   <!-- Content -->
   <div class="panel !px-4 flex flex-col gap-4 h-screen">
     <app-navbar />
     <app-header [title]="'Title v.3'" />
-    <div class="!overflow-y-auto" id="main-content" >
-      <section class="!p-6 rounded-lg shadow-lg">
+    <router-outlet />
+    <!-- <div class="!overflow-y-auto rounded-lg shadow-lg" id="main-content" >
+      <section class="!p-8 !bg-amber-200">
         <router-outlet />
       </section>
-    </div>
+    </div> -->
   </div>
 </mat-drawer-container>

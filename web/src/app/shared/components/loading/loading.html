@@ -1,0 +1,53 @@
+ <!-- Global Loading Overlay -->
+    <div 
+      class="loading-overlay" 
+      [class.show]="showOverlay()"
+      [class.backdrop]="backdrop">
+      
+      <!-- Spinner Loading -->
+      <div class="loading-content" *ngIf="type === 'spinner'">
+        <mat-spinner 
+          [diameter]="size" 
+          [color]="color"
+          [strokeWidth]="strokeWidth">
+        </mat-spinner>
+        <p class="loading-text" *ngIf="message">{{ message }}</p>
+      </div>
+
+      <!-- Progress Bar Loading -->
+      <div class="loading-content" *ngIf="type === 'progress-bar'">
+        <div class="progress-container">
+          <mat-progress-bar 
+            mode="indeterminate" 
+            [color]="color">
+          </mat-progress-bar>
+          <p class="loading-text" *ngIf="message">{{ message }}</p>
+        </div>
+      </div>
+
+      <!-- Custom Loading -->
+      <div class="loading-content custom" *ngIf="type === 'custom'">
+        <div class="custom-spinner">
+          <div class="spinner-dots">
+            <div class="dot1"></div>
+            <div class="dot2"></div>
+            <div class="dot3"></div>
+          </div>
+        </div>
+        <p class="loading-text" *ngIf="message">{{ message }}</p>
+      </div>
+
+    </div>
+
+    <!-- Inline Loading (สำหรับใช้ใน component เฉพาะ) -->
+    <div 
+      class="inline-loading" 
+      *ngIf="!global && isLoading()"
+      [class.center]="center">
+      
+      <mat-spinner 
+        [diameter]="size" 
+        [color]="color">
+      </mat-spinner>
+      <span class="loading-text" *ngIf="message">{{ message }}</span>
+    </div>

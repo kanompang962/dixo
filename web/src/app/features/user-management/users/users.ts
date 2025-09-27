@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { MatCard, MatCardContent } from "@angular/material/card";
 import { MatDivider } from "@angular/material/divider";
-import { IconButton } from "../../shared/components/icon-button/icon-button";
+import { IconButton } from "../../../shared/components/icon-button/icon-button";
 
 export interface PeriodicElement {
   name: string;
@@ -24,18 +24,19 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'app-user-management',
+  selector: 'app-users',
   imports: [
     MatTableModule,
     MatCard,
     MatCardContent,
     MatDivider,
     IconButton
-],
-  templateUrl: './user-management.html',
-  styleUrl: './user-management.scss'
+  ],
+  templateUrl: './users.html',
+  styleUrl: './users.scss'
 })
-export class UserManagement {
+
+export class Users {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
 }

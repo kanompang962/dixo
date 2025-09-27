@@ -56,6 +56,12 @@ body.dark {
   /* -----------------------------
      Mat-Text-Field Colors
   ----------------------------- */
+  .mat-mdc-text-field-wrapper {
+    background-color: var(--color-primary-dark) !important;
+  }
+  .mdc-text-field--no-label:not(.mdc-text-field--textarea) .mat-mdc-form-field-input-control.mdc-text-field__input, .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
+    background-color: var(--color-primary-dark) !important;
+  }
   .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
   .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
   .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
@@ -74,6 +80,33 @@ body.dark {
   .mat-drawer.mat-drawer-opened.mat-drawer-opened {
     background-color: var(--color-primary-dark) !important;
   }
+  /* -----------------------------
+    Tree & Material UI
+  ----------------------------- */
+  .mat-tree {
+    background-color: var(--color-primary-dark) !important;
+  }
+  /* -----------------------------
+    Tabs & Material UI
+  ----------------------------- */
+  .mat-mdc-tab-body-wrapper {
+    background-color: var(--color-primary) !important;
+  }
+  .mat-mdc-tab {
+    // Active tab (เมื่อถูกเลือก)
+    &.mdc-tab--active {
+      background-color: var(--color-primary);
+    }
+    .mdc-tab-indicator {
+      display: none !important;
+    }
+  }
+  // .mdc-tab__content {
+  //   font-size: 16px !important;
+  // }
+  // .mat-mdc-tab-label-container {
+  //   border: none !important;
+  // }
   /* -----------------------------
     Admin Layout Content
   ----------------------------- */
@@ -106,9 +139,10 @@ body {
   --mat-sys-primary: var(--color-primary);        /* สีหลักของแอป */
   --mat-sys-on-primary: var(--color-on-primary);    /* สีข้อความ/ไอคอนบน primary */
   --mat-sys-surface: var(--color-surface);        /* สีพื้นหลังของ card, sheet, menu */
-  --mat-sys-on-surface: var(--color-on-surface);     /* สีข้อความ/ */
+  --mat-sys-on-surface: var(--color-primary);     /* สีข้อความ/ */
   --mat-sys-background: var(--color-surface);    /* สีพื้นหลังหลักของ app */
-  --mat-sys-on-background: var(--color-on-surface);  /* สีข้อความบน background */
+  --mat-sys-on-background: var(--color-primary);  /* สีข้อความบน background */
+  --mat-sys-outline: var(--color-light);  /* สีเส้น outline บน Matertial UI */
   /* -----------------------------
      Mat-Card Colors
   ----------------------------- */
@@ -145,6 +179,9 @@ body {
   }
   .mat-mdc-form-field-flex {
     margin-top: 1px !important;
+  }
+  .mat-mdc-form-field {
+    margin-top: 6px !important;
   }
   .mat-mdc-form-field-infix {
     padding-top: 4px !important;
@@ -185,6 +222,51 @@ body {
     background-color: var(--color-secondary) !important;
   }
   /* -----------------------------
+    Tree & Material UI
+  ----------------------------- */
+  .mat-tree {
+    background-color: var(--color-secondary) !important;
+    .mat-tree-node {
+      justify-content: space-between !important;
+      cursor:  pointer !important;
+    }
+  }
+  /* -----------------------------
+    Tabs & Material UI
+  ----------------------------- */
+  .mat-mdc-tab-body-wrapper {
+    background-color: var(--color-surface) !important;
+    border-radius: 8px !important;
+    border-top-left-radius: 0 !important;
+    padding: 30px !important;
+  }
+  .mat-mdc-tab {
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+    transition: background-color 0.2s ease;
+
+    // Active tab (เมื่อถูกเลือก)
+    &.mdc-tab--active {
+      background-color: var(--color-surface, #e3f2fd);
+      color: var(--color-primary, #1976d2);
+    }
+    .mdc-tab-indicator {
+      display: none !important;
+    }
+  }
+  .mdc-tab__content {
+    font-size: 16px !important;
+  }
+  .mat-mdc-tab-label-container {
+    border: none !important;
+  }
+  /* -----------------------------
+    Modal & Material UI
+  ----------------------------- */
+  .mat-mdc-dialog-surface {
+    border-radius: 8px !important;
+  }
+  /* -----------------------------
     Navbar & Material UI
   ----------------------------- */
   // nav {
@@ -194,7 +276,7 @@ body {
     Admin Layout Content
   ----------------------------- */
   #main-content {
-    background-color: var(--color-secondary) !important;
+    background-color: var(--color-surface) !important;
     // min-height: calc(100vh - 160px) !important;
   }
   section {

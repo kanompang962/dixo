@@ -5,11 +5,12 @@ services:
     image: kanompang962/dixo-api:latest
     container_name: dixo-api
     ports:
-      - "5001:5000"  # map host:5208 to container:8080
+      - "5001:5000"  
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:5000
-      - CORS_ORIGINS=https://dixo.tainchaidev.online,http://dixo.tainchaidev.online,http://localhost:8081,http://localhost:4200
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_URLS: "http://+:5000"
+      DB_CONNECTION_STRING: "${DB_CONNECTION_STRING}"
+      CORS_ORIGINS: "https://dixo.tainchaidev.online,http://dixo.tainchaidev.online,http://localhost:8081,http://localhost:4200"
     networks:
       - dixo-network
     healthcheck:

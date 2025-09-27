@@ -1,0 +1,27 @@
+<!-- <div class="input" *ngIf="type != 'area'">
+    <label *ngIf="label" for="{{ name }}">{{ label }}:</label>
+    <input
+        [type]="type"
+        [id]="name"
+        [name]="name"
+        [formControl]="formControl"
+        (input)="onInputChange($event)"
+        (blur)="onTouched()"
+        (ngModelChange)="onValueChange($event)"
+      />
+</div> -->
+
+          <label [for]="id" class="">{{label}}</label>
+          <mat-form-field appearance="outline" class="w-full mb-4">
+            <input
+              matInput 
+              [type]="type" 
+              [formControl]="formControl"
+              [id]="id" 
+              (input)="onInputChange($event)"
+              (blur)="onTouched()"
+              (ngModelChange)="onValueChange($event)"/>
+            @if (icon) {
+              <mat-icon matSuffix>{{ icon }}</mat-icon>
+            }
+          </mat-form-field>

@@ -21,7 +21,6 @@ describe('AdminLayout', () => {
         provideRouter([
           { path: '', component: DummyComponent },
           { path: 'user-management', component: DummyComponent },
-          { path: 'items', component: DummyComponent },
         ])
       ]
     }).compileComponents();
@@ -39,6 +38,5 @@ describe('AdminLayout', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.textContent).toContain('Dashboard');
     expect(compiled.textContent).toContain('User Management');
-    expect(compiled.textContent).toContain('Items');
   });
 });

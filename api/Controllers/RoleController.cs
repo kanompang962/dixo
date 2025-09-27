@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Models.Dtos.RoleDto;
 using api.Services.RoleService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -20,12 +21,15 @@ namespace api.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateRole([FromBody] string roleName)
+        public async Task<IActionResult> CreateRole([FromBody] CreateRoleDto createRoleDto)
         {
             try
             {
-                await _roleService.CreateRoleAsync(roleName);
-                return Ok(new { message = $"Role '{roleName}' created successfully." });
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                await _roleService.CreateRoleAsync(createRoleDto.Name);
+                return Ok(new { message = $"Role '{createRoleDto.Name}' created successfully." });
             }
             catch (Exception Ex)
             {

@@ -1,1 +1,11 @@
-<p>title works!</p>
+<div class="!mb-8">
+    <div class="flex items-center justify-between !pb-2">
+        <p class="text-[16px]">{{ title }}</p>
+        <app-icon-button  
+            [title]="labelButton" 
+            type="add" 
+            (onClick)="click()"
+            [class]="'min-w-2xs'" />
+    </div>
+    <mat-divider></mat-divider>
+</div>

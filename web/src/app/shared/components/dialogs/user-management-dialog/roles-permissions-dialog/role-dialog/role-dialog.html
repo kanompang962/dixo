@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Hi</h2>
+<mat-dialog-content>
+    <form [formGroup]="data.formGroup">
+        <app-input 
+            *ngIf="data.formGroup.get('name')"
+            [formControl]="data.formGroup.controls.name"
+            label="Role Name"
+            placeholder="Enter role name">
+        </app-input>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <app-icon-button title="Cancel" (onClick)="onNoClick()" />
+  <app-icon-button title="Add Role" [mat-dialog-close]=""/>
+</mat-dialog-actions>

@@ -1,6 +1,7 @@
 using api.Data;
 using api.Models;
 using api.Services.RoleService;
+using api.Services.UserService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,8 +24,9 @@ builder.Services.AddCors(options =>
                   .AllowAnyHeader();
         });
 });
-// Add DbContext
-var connString = builder.Configuration.GetConnectionString("DefaultConnection");
+// อ่านจาก ENV ก่อน ถ้าไม่มีค่อย fallback ไปที่ appsettings.json
+var connString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")
+                 ?? builder.Configuration.GetConnectionString("DefaultConnection");
 // ใช้ Pomelo MySQL / TiDB Cloud
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connString, ServerVersion.AutoDetect(connString)));
@@ -41,6 +43,8 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 // ลงทะเบียน Service Layer
 // RoleService
 builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 
 var app = builder.Build();
 

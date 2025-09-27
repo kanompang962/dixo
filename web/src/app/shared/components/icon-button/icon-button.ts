@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIconModule } from "@angular/material/icon";
 import { NgClass } from '@angular/common';
 
@@ -13,6 +13,11 @@ export class IconButton {
   @Input() title: string = '';
   @Input() class: string = '';
   @Input() type: 'add' | 'edit' | 'delete'| '' = '' ;
+  @Output() onClick = new EventEmitter<void>();
+
+  click() {
+    this.onClick.emit(); // ส่ง Event เมื่อคลิกปุ่ม
+  }
   
   ngOnInit() {
     console.log(this.type)

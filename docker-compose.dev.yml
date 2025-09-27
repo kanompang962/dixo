@@ -9,9 +9,10 @@ services:
     ports:
       - "5001:5000"  # map host:5208 to container:8080
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:5000
-      - CORS_ORIGINS=http://localhost:4200,http://localhost:80
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_URLS: "http://+:5000"
+      DB_CONNECTION_STRING: "Server=gateway01.ap-southeast-1.prod.aws.tidbcloud.com;Port=4000;Database=erp;User=2jNFH6pSbFwdkwg.root;Password=xxxxx;SslMode=Required;"
+      CORS_ORIGINS: "http://localhost:4200,http://localhost:8081"
     networks:
       - dixo-network
     healthcheck:
@@ -25,11 +26,9 @@ services:
     build:
       context: ./web  # path to your Angular project folder
       dockerfile: Dockerfile
-      args:
-        - API_URL=http://api:5000   # ← ใช้ service name ของ Docker network
     container_name: dixo-web
     ports:
-      - "80:80"  # map host:80 to container:80
+      - "8081:80"  # map host:80 to container:80
     depends_on:
       api:
         condition: service_healthy
@@ -37,6 +36,7 @@ services:
       - dixo-network
     environment:
       - NODE_ENV=production
+      - API_URL=/api
 
 networks:
   dixo-network:
