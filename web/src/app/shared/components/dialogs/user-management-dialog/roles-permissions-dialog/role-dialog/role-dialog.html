@@ -1,8 +1,11 @@
-<h2 mat-dialog-title>Hi</h2>
+<p mat-dialog-title>Add Role</p>
+<mat-divider></mat-divider>
 <mat-dialog-content>
     <form [formGroup]="data.formGroup">
+        <p class="!text-sm !mb-4 !opacity-80">Please enter a <strong>role name</strong> below.  
+            The role will be used to manage permissions in the system.
+        </p>
         <app-input 
-            *ngIf="data.formGroup.get('name')"
             [formControl]="data.formGroup.controls.name"
             label="Role Name"
             placeholder="Enter role name">
@@ -10,6 +13,15 @@
     </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <app-icon-button title="Cancel" (onClick)="onNoClick()" />
-  <app-icon-button title="Add Role" [mat-dialog-close]=""/>
+  <app-icon-button 
+    title="Cancel" 
+    [class]="'min-w-40'"
+    (onClick)="onNoClick()" />
+  <app-icon-button 
+    title="Add Role" 
+    [class]="'min-w-40'"
+    variant="add" 
+    [mat-dialog-close]="data.formGroup.controls.name.value"
+    />
 </mat-dialog-actions>
+<!-- *ngIf="data.formGroup.get('name')" -->

@@ -140,7 +140,7 @@ body {
   --mat-sys-on-primary: var(--color-on-primary);    /* สีข้อความ/ไอคอนบน primary */
   --mat-sys-surface: var(--color-surface);        /* สีพื้นหลังของ card, sheet, menu */
   --mat-sys-on-surface: var(--color-primary);     /* สีข้อความ/ */
-  --mat-sys-background: var(--color-surface);    /* สีพื้นหลังหลักของ app */
+  --mat-sys-background: var(--color-secondary);    /* สีพื้นหลังหลักของ app */
   --mat-sys-on-background: var(--color-primary);  /* สีข้อความบน background */
   --mat-sys-outline: var(--color-light);  /* สีเส้น outline บน Matertial UI */
   /* -----------------------------
@@ -265,6 +265,11 @@ body {
   ----------------------------- */
   .mat-mdc-dialog-surface {
     border-radius: 8px !important;
+  }
+  .mat-mdc-dialog-title {
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    padding: 0px 20px 20px 20px !important;
   }
   /* -----------------------------
     Navbar & Material UI

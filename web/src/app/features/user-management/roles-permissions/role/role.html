@@ -1,14 +1,13 @@
 <div class="">
     <app-title title="" labelButton="Add Role" (onClick)="addRole()" />
-            <p>Loading: {{ loadingService.isLoading() }}</p>
-        <p>Count: {{ loadingService.loadingCount() }}</p>
     <mat-card>
         <mat-card-content>
                 <!-- Progress Bar -->
             @if (false) {
                 <mat-progress-bar mode="indeterminate" class="mb-4"></mat-progress-bar>
             } @else {
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <div class="max-h-[480px] overflow-y-auto">
+                                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
                     <ng-container matColumnDef="position">
                         <th mat-header-cell *matHeaderCellDef> No. </th>
                         <td mat-cell *matCellDef="let i = index;"> {{ i+1 }} </td>
@@ -28,14 +27,23 @@
                         <th mat-header-cell *matHeaderCellDef> Management </th>
                         <td mat-cell *matCellDef="let element"> 
                             <div class="flex gap-2">
-                                <button>edit</button>
-                                <button>delete</button>
+                                <app-icon-button
+                                    title="Edit"
+                                    icon="edit"
+                                    variant="edit"
+                                />
+                                <app-icon-button
+                                    title="Delete"
+                                    icon="close"
+                                    variant="delete"
+                                />
                             </div>    
                         </td>
                     </ng-container>
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
+                </div>
                 <!-- Pagination -->
                 <mat-paginator 
                     #paginator

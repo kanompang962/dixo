@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { InputComponent } from "../../../../input/input.component";
 import { RoleDialogData } from '../../../../../../core/models/user-management-model/role.model';
 import { IconButton } from "../../../../icon-button/icon-button";
+import { MatDivider } from "@angular/material/divider";
 
 
 @Component({
@@ -22,7 +23,8 @@ import { IconButton } from "../../../../icon-button/icon-button";
     MatDialogActions,
     MatDialogClose,
     InputComponent,
-    IconButton
+    IconButton,
+    MatDivider
 ],
   templateUrl: './role-dialog.html',
   styleUrl: './role-dialog.scss'

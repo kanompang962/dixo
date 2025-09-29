@@ -1,13 +1,12 @@
 
 
+
+
+
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab label="Users">
 <div class="">
-  <div class="!mb-4">
-    <p class="text-[16px] !pb-4">Users</p>
-    <mat-divider></mat-divider>
-  </div>
- <div class="flex justify-end">
-  <app-icon-button title="Add User" type="add" [class]="'min-w-2xs'" />
- </div>
+  <app-title labelButton="Add User" />
   <mat-card>
     <mat-card-content>
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -42,4 +41,6 @@
   </mat-card>
 
 </div>
+  </mat-tab>
+</mat-tab-group>
 

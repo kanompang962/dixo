@@ -365,8 +365,9 @@ describe('RoleDialog', () => {
 
     it('should handle form group with no controls', () => {
       // Create empty form group
-      const emptyFormGroup = new FormGroup({});
-      
+      const emptyFormGroup = new FormGroup({
+        name: new FormControl('') // ต้องมี name
+      });
       // Update the injected data
       (component.data as any).formGroup = emptyFormGroup;
       

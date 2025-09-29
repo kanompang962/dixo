@@ -1,12 +1,12 @@
-<section class="!my-2  hover:shadow-md flex items-center justify-center rounded-xl !p-2 cursor-pointer" matBadge="7"
+<section class="!my-2  hover:shadow-md flex items-center justify-center rounded-lg !p-2 cursor-pointer" matBadge="7"
         [class]="class"
         (click)="click()"
-        [ngClass]="type === 'add' 
+        [ngClass]="variant === 'add' 
                     ? '!bg-warning'
-                    : type === 'edit'
-                        ? '!bg-warning/80'
-                        : type === 'delete'
-                            ? '!bg-warning/60'
+                    : variant === 'edit'
+                        ? '!bg-info'
+                        : variant === 'delete'
+                            ? '!bg-danger'
                             : ''" >
     @if (icon) {
         <mat-icon [fontIcon]="icon"></mat-icon>

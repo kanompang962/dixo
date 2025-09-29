@@ -12,14 +12,10 @@ export class IconButton {
   @Input() icon: string = '';
   @Input() title: string = '';
   @Input() class: string = '';
-  @Input() type: 'add' | 'edit' | 'delete'| '' = '' ;
+  @Input() variant: 'add' | 'edit' | 'delete'| '' = '' ;
   @Output() onClick = new EventEmitter<void>();
 
   click() {
     this.onClick.emit(); // ส่ง Event เมื่อคลิกปุ่ม
-  }
-  
-  ngOnInit() {
-    console.log(this.type)
   }
 }
